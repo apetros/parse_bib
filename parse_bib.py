@@ -21,10 +21,8 @@ def RepresentsInt(s):
     except ValueError:
         return False
 
-
 def supetrim(string):
     return string.replace("\\" , "").replace("{" , "").replace("}" , "").replace("\n"," ")
-
 
 def month_string_to_number(string):
     m = {
@@ -42,13 +40,11 @@ def month_string_to_number(string):
         'dec':12
         }
     s = string.strip()[:3].lower()
-
     try:
         out = m[s]
         return out
     except:
         raise ValueError('Not a month')
-
 
 # You can add the name of a co-author and their website and it will create a link on the publications website
 def get_author_link(string):
@@ -56,13 +52,11 @@ def get_author_link(string):
         'P. Aristidou':'https://www.paristidou.info',
         'Co-author 2': 'http://www.amazing-site.com'
         }
-
     out = ''
     try:
         out = web[string]
     except:
         print("Author's "+string+" website is missing.")
-
     return out
 
 def main(argv):
@@ -80,10 +74,8 @@ def main(argv):
             inputfile = arg
     return inputfile
 
-
 if __name__ == "__main__":
     inputfile = main(sys.argv[1:])
-
     try:
         with open(inputfile, encoding="utf8") as bibtex_file:
             bibtex_str = bibtex_file.read()
