@@ -54,21 +54,7 @@ def month_string_to_number(string):
 def get_author_link(string):
     web = {
         'P. Aristidou':'https://www.paristidou.info',
-        'T. Van Cutsem': 'http://www.montefiore.ulg.ac.be/~vct/',
-        'G. Hug':'https://www.eeh.ee.ethz.ch/en/power/power-systems-laboratory/people/professors/uid/7286.html',
-        'G. Hug-Glanzmann': 'https://www.eeh.ee.ethz.ch/en/power/power-systems-laboratory/people/professors/uid/7286.html',
-        'C. Geuzaine':'http://www.montefiore.ulg.ac.be/~geuzaine/',
-        'L. Papangelis':'http://scholar.google.ch/citations?user=cZakW7oAAAAJ&hl=en',
-        'D. Ernst':'http://blogs.ulg.ac.be/damien-ernst/',
-        'G. Valverde':'http://scholar.google.co.uk/citations?user=Uy6MCt4AAAAJ&hl=en',
-        'F. Plumier':'https://scholar.google.ch/citations?user=2tyCECYAAAAJ&hl=en',
-        'D. Fabozzi':'https://scholar.google.ch/citations?user=2wog_JcAAAAJ&hl=en',
-        'N. Hatziargyriou':'https://scholar.google.ch/citations?user=TL9yCsQAAAAJ&hl=en',
-        'A. Ulbig':'https://scholar.google.ch/citations?user=I1eJUa0AAAAJ&hl=en',
-        'S. Koch':'https://scholar.google.ch/citations?user=RllLoicAAAAJ&hl=en',
-        'S. Karagiannopoulos':'http://www.eeh.ee.ethz.ch/en/power/power-systems-laboratory/people/scientific-staff/uid/7275.html',
-        'M. Uros':'http://urosmarkovic.com/',
-        'G. Lammert':'https://www.uni-kassel.de/eecs/fachgebiete/e2n/mitarbeitende/gustav-lammert.html'
+        'Co-author 2': 'http://www.amazing-site.com'
         }
 
     out = ''
