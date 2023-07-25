@@ -53,6 +53,7 @@ def month_string_to_number(string):
 # You can add the name of a co-author and their website and it will create a link on the publications website
 def get_author_link(string):
     web = {
+        'P. Aristidou':'https://sps.cut.ac.cy/authors/p-aristidou',
         'R. Ortega':'https://scholar.google.com/citations?hl=en&user=1jf5n5wAAAAJ',
         'J. Elmirghani':'https://scholar.google.com/citations?hl=en&user=jc_S5bIAAAAJ',
         'J. Schiffer':'https://scholar.google.com/citations?hl=en&user=Zk26WrgAAAAJ',
@@ -138,10 +139,10 @@ if __name__ == "__main__":
     
     bib_database = bibtexparser.loads(bibtex_str)
     for entry in bib_database.entries:
-        filedir = 'content/en/publication/'+entry['ID'] 
+        filedir = 'content/publication/'+entry['ID'] 
         if not os.path.exists(filedir):
             os.mkdir(filedir)
-        filenm = 'content/en/publication/'+entry['ID']+'/index.md'
+        filenm = 'content/publication/'+entry['ID']+'/index.md'
         
         # If the same publication exists, then skip the creation. I customize the .md files later, so I don't want them overwritten. Only new publications are created.
         #if os.path.isfile(filenm):
@@ -176,11 +177,9 @@ if __name__ == "__main__":
                         author_strip = author_split[1].strip() + ' ' +author_split[0].strip()
                     author_split = author_strip.split(' ')
                     author_strip = author_split[0][0]+'. '+' '.join(map(str, author_split[1:]))
-                    if author_strip == 'P. Aristidou':
-                        author_strip = 'admin'
                     author_web = get_author_link(author_strip)
                     if author_web:
-                        authors_str = authors_str + '"['+author_strip+'](' + author_web + ')",'
+                        authors_str = authors_str + '"['+author_strip+'](' + author_web + ')",'                        
                     else:
                         authors_str = authors_str+ '"'+author_strip+'",'
                 the_file.write(authors_str[:-1]+']\n')
@@ -233,7 +232,19 @@ if __name__ == "__main__":
                 the_file.write('featured = true\n')
             else:
                 the_file.write('featured = false\n')
-            the_file.write('projects = []\n')
+
+            if 'projects' in entry:
+                the_projects = entry['projects'].split(';')
+                the_file.write('projects = [')
+                project_str = ''
+                for project in the_projects:
+                    project_strip = supetrim(project)
+                    project_str = project_str+ '"'+project_strip.lower()+'",'
+                the_file.write(project_str[:-1]+']\n')
+            else:
+                the_file.write('projects = []\n')
+
+  
             the_file.write('slides = ""\n')
 
             # I add urls to the pdf and the DOI
@@ -258,7 +269,7 @@ if __name__ == "__main__":
             db = BibDatabase()
             db.entries =[entry]
             writer = BibTexWriter()
-            with open('content/en/publication/'+entry['ID']+'/cite.bib', 'w', encoding='utf8') as bibfile:
+            with open('content/publication/'+entry['ID']+'/cite.bib', 'w', encoding='utf8') as bibfile:
                 bibfile.write(writer.write(db))
 
             the_file.write('+++\n\n')
